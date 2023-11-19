@@ -1,0 +1,27 @@
+/**
+Theme Name: CV
+*/
+
+img {
+    border: 5px solid #538036; 
+    border-image: url('assets/img/pattern.jpg') 25 round; 
+  }
+  
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  ul > li {
+    padding-left: 25px;   
+     /* espace entre icone et texte */
+    background-image: url('assets/img/luffy.jpg');
+    background-repeat: no-repeat; 
+    /*  0 répétition de l'image */
+    background-size: 12px; 
+    /* taille luffy*/
+    list-style-position: outside; 
+    /*extérieur zone de texte */
+    margin-bottom: 5px; 
+  }
+  
