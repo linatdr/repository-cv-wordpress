@@ -97,8 +97,18 @@
     <?php endwhile; ?>
   </ul>
 <?php endif; ?>
-</body>
 
-</html> 
 
-<?php get_footer(); ?>
+<?php
+    $XP = new WP_Query([
+        'post_type' => 'XP',
+    ]);
+  ?>
+<?php if ($XP->have_posts()): ?>
+  <h3>Expériences Professionnelles</h3>
+  <ul>
+    <?php while ($XP->have_posts()): $XP->the_post(); ?>
+      <li><?php the_title(); ?></li>
+    <?php endwhile; ?>
+  </ul>
+<?php endif; ?>
