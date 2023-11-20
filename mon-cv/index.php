@@ -24,35 +24,25 @@
     <li> <a href="mailto:lina.tordeur@isfsc.be">lina.tordeur@isfsc.be</a> </li>
   </ul>
   
-  <h2>Formations</h2>
-  <style> h2{color: green; 
-  font-family:'font-family: 'system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   } </style>
-  <ul>
-    <li>2009-2015 : Institut Notre dame-Agaves, Anderlecht, Obtention du C.E.B -Juin 2015</li>
-    <li>2015-2021 : Collège St Augustin, Enghien, Obtention du C.E.1.D - Juin 2017, Obtention du C.E.S.S - Juin 2021</li>
-    <li>2021-2022 : Essai à l'IHECS (FF)</li>
-    <li>2022-2023 : Haute Ecole ISFSC, Schaerbeek - EMU BAC1</li>
-    <li>2023-2024 : Haute Ecole ISFSC, Schaerbeek - EMU BAC2</li>
+<?php 
+$formationlist = new WP_Query( [
+  'post_type' => 'formation',
+  'posts_per_page' => -1
+]);
+?>
+<? if ($formationlist->have_posts()): ?>
+  <h3>Formations</h3>
+  <ul> 
+    <?php 
+    while ($formationlist->have_posts()): $formationlist->the_post();
+?>
+<li>
+<?php the_title(); ?> - <a href=" <?php the_permalink(); ?>" >voir</a>
+</li>
+<?php endwhile; ?>
+<?php wp_reset_postdata(); ?>
   </ul>
-  <h2>Expériences Professionnelles (aucune)</h2>
-  <ul>
-    <li>Avril 2016 - Présent : Développeur Front-End, Société TechVision, Bruxelles
-      <ul>
-        <li>Conception et développement d'interfaces utilisateur pour des applications web et mobiles en utilisant HTML, CSS et JavaScript.</li>
-        <li>Collaboration étroite avec les designers pour transformer des maquettes en interfaces interactives et conviviales.</li>
-        <li>Expérience dans la mise en œuvre de projets Agile, avec des sprints et des réunions de planification et de rétrospective.</li>
-        <li>Utilisation de frameworks tels que React et Vue.js pour créer des expériences utilisateur dynamiques et réactives.</li>
-        <li>Intégration de services RESTful et utilisation de Git pour le contrôle de version.</li>
-      </ul>
-    <li>Juin 2015 - Mars 2016 : Stagiaire en Développement Web, Startup WebCraft, Liège
-      <ul>
-        <li>Assistance dans la création d'une application web responsive utilisant les dernières technologies front-end.</li>
-        <li>Participation à l'optimisation des performances du site et à l'assurance de sa compatibilité avec différents navigateurs.</li>
-        <li>Contribution à la mise en place d'une méthodologie de développement Agile au sein de l'équipe.</li>
-      </ul>
-  </ul>
-  
+<?php endif; ?>
 
   <?php
     $skillslist = new WP_Query([
@@ -72,13 +62,16 @@
 <?php
     $langueslist = new WP_Query([
         'post_type' => 'langues',
+        'posts_per_page' => -1
+        
     ]);
   ?>
 <?php if ($langueslist->have_posts()): ?>
   <h3>Langues</h3>
   <ul>
     <?php while ($langueslist->have_posts()): $langueslist->the_post(); ?>
-      <li><?php the_title(); ?></li>
+      <li><?php the_title(); ?> - <a href=" <?php the_permalink(); ?>" >voir</a>
+    </li>
     <?php endwhile; ?>
   </ul>
 <?php endif; ?>
